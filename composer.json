@@ -1,7 +1,7 @@
 {
     "name": "faustbrian/meteorpayment-php-client",
     "description": "A Meteor Payment Client for PHP",
-    "keywords": ["api", "faustbrian", "faustbrian-meteorpayment", "meteorpayment", "Brian Faust", "faustbrian"],
+    "keywords": ["api", "meteor payment", "Brian Faust", "faustbrian"],
     "license": "MIT",
     "authors": [{
         "name": "Brian Faust",
