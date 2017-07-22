@@ -3,76 +3,116 @@
 /*
  * This file is part of Meteor Payment PHP Client.
  *
- * (c) Brian Faust <hello@brianfaust.de>
+ * (c) Brian Faust <hello@brianfaust.me>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\MeteorPayment\Api;
+namespace BrianFaust\MeteorPayment\API;
 
-use BrianFaust\Unified\AbstractApi as BaseApi;
+use BrianFaust\Http\PendingHttpRequest;
 
-abstract class AbstractApi extends BaseApi
+abstract class AbstractAPI
 {
-    public function setAmount($value)
+    /**
+     * @var \BrianFaust\Http\PendingHttpRequest
+     */
+    protected $client;
+
+    /**
+     * @var array
+     */
+    protected $parameters;
+
+    /**
+     * Create a new API class instance.
+     *
+     * @param \BrianFaust\Http\PendingHttpRequest $client
+     */
+    public function __construct(PendingHttpRequest $client)
+    {
+        $this->client = $client;
+    }
+
+    public function setAmount($value): AbstractAPI
     {
         $this->addFormParameter('amount', $value);
+
+        return $this;
     }
 
-    public function setCurrency($value)
+    public function setCurrency($value): AbstractAPI
     {
         $this->addFormParameter('currency', $value);
+
+        return $this;
     }
 
-    public function setPaymentBrand($value)
+    public function setPaymentBrand($value): AbstractAPI
     {
         $this->addFormParameter('paymentBrand', $value);
+
+        return $this;
     }
 
-    public function setPaymentType($value)
+    public function setPaymentType($value): AbstractAPI
     {
         $this->addFormParameter('paymentType', $value);
+
+        return $this;
     }
 
-    public function setDescriptor($value)
+    public function setDescriptor($value): AbstractAPI
     {
         $this->addFormParameter('descriptor', $value);
+
+        return $this;
     }
 
-    public function setMerchantTransactionId($value)
+    public function setMerchantTransactionId($value): AbstractAPI
     {
         $this->addFormParameter('merchantTransactionId', $value);
+
+        return $this;
     }
 
-    public function setMerchantInvoiceId($value)
+    public function setMerchantInvoiceId($value): AbstractAPI
     {
         $this->addFormParameter('merchantInvoiceId', $value);
+
+        return $this;
     }
 
-    public function setAuthentication($data)
+    public function setAuthentication($data): AbstractAPI
     {
         $this->addFormParameter('authentication.userId', array_get($data, 'userId'));
         $this->addFormParameter('authentication.password', array_get($data, 'password'));
         $this->addFormParameter('authentication.entityId', array_get($data, 'entityId'));
+
+        return $this;
     }
 
-    public function setCreditCard($data)
+    public function setCreditCard($data): AbstractAPI
     {
         $this->addFormParameter('card.holder', array_get($data, 'holder'));
         $this->addFormParameter('card.number', array_get($data, 'number'));
         $this->addFormParameter('card.expiryMonth', array_get($data, 'expiryMonth'));
         $this->addFormParameter('card.expiryYear', array_get($data, 'expiryYear'));
         $this->addFormParameter('card.cvv', array_get($data, 'cvv'));
+
+        return $this;
     }
 
-    public function setVirtualAccount($accountId, $password)
+    public function setVirtualAccount($accountId, $password): AbstractAPI
     {
         $this->addFormParameter('virtualAccount.accountId', $accountId);
         $this->addFormParameter('virtualAccount.password', $password);
+
+        return $this;
     }
 
-    public function setBankAccount($data)
+    public function setBankAccount($data): AbstractAPI
     {
         $this->addFormParameter('bankAccount.holder', array_get($data, 'holder'));
         $this->addFormParameter('bankAccount.bankName', array_get($data, 'bankName'));
@@ -84,9 +124,11 @@ abstract class AbstractApi extends BaseApi
         $this->addFormParameter('bankAccount.mandate.id', array_get($data, 'mandate.id'));
         $this->addFormParameter('bankAccount.mandate.dateOfSignature', array_get($data, 'mandate.dateOfSignature'));
         $this->addFormParameter('transactionDueDate', array_get($data, 'transactionDueDate'));
+
+        return $this;
     }
 
-    public function setCustomer($data)
+    public function setCustomer($data): AbstractAPI
     {
         $this->addFormParameter('customer.merchantCustomerId', array_get($data, 'merchantCustomerId'));
         $this->addFormParameter('customer.givenName', array_get($data, 'givenName'));
@@ -100,9 +142,11 @@ abstract class AbstractApi extends BaseApi
         $this->addFormParameter('customer.identificationDocType', array_get($data, 'identificationDocType'));
         $this->addFormParameter('customer.identificationDocId', array_get($data, 'identificationDocId'));
         $this->addFormParameter('customer.ip', array_get($data, 'ip'));
+
+        return $this;
     }
 
-    public function setBillingAddress($data)
+    public function setBillingAddress($data): AbstractAPI
     {
         $this->addFormParameter('billing.street1', array_get($data, 'street1'));
         $this->addFormParameter('billing.street2', array_get($data, 'street2'));
@@ -110,9 +154,11 @@ abstract class AbstractApi extends BaseApi
         $this->addFormParameter('billing.state', array_get($data, 'state'));
         $this->addFormParameter('billing.postcode', array_get($data, 'postcode'));
         $this->addFormParameter('billing.country', array_get($data, 'country'));
+
+        return $this;
     }
 
-    public function setShippingAddress($data)
+    public function setShippingAddress($data): AbstractAPI
     {
         $this->addFormParameter('shipping.givenName', array_get($data, 'givenName'));
         $this->addFormParameter('shipping.surname', array_get($data, 'surname'));
@@ -122,9 +168,11 @@ abstract class AbstractApi extends BaseApi
         $this->addFormParameter('shipping.state', array_get($data, 'state'));
         $this->addFormParameter('shipping.postcode', array_get($data, 'postcode'));
         $this->addFormParameter('shipping.country', array_get($data, 'country'));
+
+        return $this;
     }
 
-    public function setCart($items)
+    public function setCart($items): HttpResponse
     {
         $itemsCount = count($items);
 
@@ -146,31 +194,39 @@ abstract class AbstractApi extends BaseApi
         return $this;
     }
 
-    public function setCreateRegistration($value)
+    public function setCreateRegistration($value): AbstractAPI
     {
         $this->addFormParameter('createRegistration', $value);
+
+        return $this;
     }
 
-    public function setRecurringType($value)
+    public function setRecurringType($value): AbstractAPI
     {
         $this->addFormParameter('recurringType', $value);
+
+        return $this;
     }
 
-    public function set3DSecure($data)
+    public function set3DSecure($data): AbstractAPI
     {
         $this->addFormParameter('threeDSecure.eci', array_get($data, 'eci'));
         $this->addFormParameter('threeDSecure.verificationId', array_get($data, 'verificationId'));
         $this->addFormParameter('threeDSecure.xid', array_get($data, 'xid'));
+
+        return $this;
     }
 
-    public function setCustomParameter($key, $value)
+    public function setCustomParameter($key, $value): AbstractAPI
     {
         $this->addFormParameter("customParameters[$key]", $value);
+
+        return $this;
     }
 
-    public function setCustomParameters($data)
+    public function setCustomParameters($data): AbstractAPI
     {
-        if (! is_array($data)) {
+        if (!is_array($data)) {
             return $this;
         }
 
@@ -181,18 +237,31 @@ abstract class AbstractApi extends BaseApi
         return $this;
     }
 
-    public function setShopperResultUrl($value)
+    public function setShopperResultUrl($value): AbstractAPI
     {
         $this->addFormParameter('shopperResultUrl', $value);
+
+        return $this;
     }
 
-    public function setNotificationUrl($value)
+    public function setNotificationUrl($value): AbstractAPI
     {
         $this->addFormParameter('notificationUrl', $value);
+
+        return $this;
     }
 
-    public function setTestMode($mode)
+    public function setTestMode($mode): AbstractAPI
     {
         $this->addFormParameter('testMode', $mode);
+
+        return $this;
+    }
+
+    private function addFormParameter(string $key, $value): AbstractAPI
+    {
+        $this->parameters[$key] = $value;
+
+        return $this;
     }
 }

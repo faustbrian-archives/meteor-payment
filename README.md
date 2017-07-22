@@ -1,5 +1,7 @@
 # MeteorPayment PHP Client
 
+https://gate2payments.docs.oppwa.com/
+
 ## Installation
 
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
@@ -148,10 +150,21 @@ $meteor->api('CopyAndPay')->setNotificationUrl($value);
 $meteor->api('CopyAndPay')->setTestMode($mode);
 ```
 
+## Testing
+
+``` bash
+$ phpunit
+```
+
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to Brian Faust at hello@brianfaust.de. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to Brian Faust at hello@brianfaust.me. All security vulnerabilities will be promptly addressed.
+
+## Credits
+
+- [Brian Faust](https://github.com/faustbrian)
+- [All Contributors](../../contributors)
 
 ## License
 
-[MIT](LICENSE) © [Brian Faust](https://brianfaust.de)
+[MIT](LICENSE) © [Brian Faust](https://brianfaust.me)
