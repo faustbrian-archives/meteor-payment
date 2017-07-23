@@ -45,10 +45,10 @@ class Client
      */
     public function __construct(string $userId, string $password, string $entityId, bool $sandbox = true)
     {
-        $this->userId   = $userId;
+        $this->userId = $userId;
         $this->password = $password;
         $this->entityId = $entityId;
-        $this->sandbox  = $sandbox;
+        $this->sandbox = $sandbox;
     }
 
     /**
