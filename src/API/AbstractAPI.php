@@ -228,7 +228,7 @@ abstract class AbstractAPI
 
     public function setCustomParameters($data): self
     {
-        if (! is_array($data)) {
+        if (!is_array($data)) {
             return $this;
         }
 
