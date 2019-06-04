@@ -1,9 +1,9 @@
 # MeteorPayment PHP Client
 
-[![Build Status](https://img.shields.io/travis/faustbrian/MeteorPayment-PHP-Client/master.svg?style=flat-square)](https://travis-ci.org/faustbrian/MeteorPayment-PHP-Client)
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/faustbrian/meteorpayment-php-client.svg?style=flat-square)]()
-[![Latest Version](https://img.shields.io/github/release/faustbrian/MeteorPayment-PHP-Client.svg?style=flat-square)](https://github.com/faustbrian/MeteorPayment-PHP-Client/releases)
-[![License](https://img.shields.io/packagist/l/faustbrian/MeteorPayment-PHP-Client.svg?style=flat-square)](https://packagist.org/packages/faustbrian/MeteorPayment-PHP-Client)
+[![Build Status](https://img.shields.io/travis/plients/MeteorPayment-PHP-Client/master.svg?style=flat-square)](https://travis-ci.org/plients/MeteorPayment-PHP-Client)
+[![PHP from Packagist](https://img.shields.io/packagist/php-v/plients/meteorpayment.svg?style=flat-square)]()
+[![Latest Version](https://img.shields.io/github/release/plients/MeteorPayment-PHP-Client.svg?style=flat-square)](https://github.com/plients/MeteorPayment-PHP-Client/releases)
+[![License](https://img.shields.io/packagist/l/plients/MeteorPayment-PHP-Client.svg?style=flat-square)](https://packagist.org/packages/plients/MeteorPayment-PHP-Client)
 
 https://gate2payments.docs.oppwa.com/
 
@@ -11,19 +11,21 @@ https://gate2payments.docs.oppwa.com/
 
 Require this package, with [Composer](https://getcomposer.org/), in the root directory of your project.
 
-``` bash
-$ composer require faustbrian/meteor-payment-php-client
+```bash
+$ composer require plients/meteor-payment
 ```
 
 ## Usage
 
 ### SETUP THE METEOR PAYMENT CLIENT
-``` php
-$meteor = new BrianFaust\MeteorPayment\MeteorPayment('METEOR_USER_ID', 'METEOR_PASSWORD', 'METEOR_ENTITY_ID');
+
+```php
+$meteor = new Plients\MeteorPayment\MeteorPayment('METEOR_USER_ID', 'METEOR_PASSWORD', 'METEOR_ENTITY_ID');
 ```
 
 ### PREPARE THE CHECKOUT
-``` php
+
+```php
 $customerDetails = [
     'givenName' => 'Cookie',
     'surname' => 'Monster',
@@ -68,7 +70,8 @@ $meteor->api('CopyAndPay')
 ```
 
 ### CAPTURE AN AUTHORIZATION
-``` php
+
+```php
 $meteor->api('BackOffice')
        ->setCurrency('EUR')
        ->setAmount(10.00)
@@ -76,7 +79,8 @@ $meteor->api('BackOffice')
 ```
 
 ### REFUND A PAYMENT
-``` php
+
+```php
 $meteor->api('BackOffice')
        ->setCurrency('EUR')
        ->setAmount(10.00)
@@ -84,13 +88,15 @@ $meteor->api('BackOffice')
 ```
 
 ### REVERSE A PAYMENT
-``` php
+
+```php
 $meteor->api('BackOffice')
        ->reversal('PAYMENT_ID');
 ```
 
 ### SENDING THE INITIAL PAYMENT
-``` php
+
+```php
 $creditCard = [
     'number' => '4200000000000000',
     'holder' => 'Jane Jones',
@@ -109,7 +115,8 @@ $meteor->api('Recurring')
 ```
 
 ### SENDING A REPEATED PAYMENT
-``` php
+
+```php
 $meteor->api('Recurring')
        ->setPaymentType('DB')
        ->setCurrency('EUR')
@@ -118,7 +125,8 @@ $meteor->api('Recurring')
 ```
 
 ### SEND AN ONE-CLICK PAYMENT
-``` php
+
+```php
 $meteor->api('OneClick')
        ->setPaymentType('DB')
        ->setCurrency('EUR')
@@ -127,7 +135,8 @@ $meteor->api('OneClick')
 ```
 
 #### Available Setter-Methods
-``` php
+
+```php
 $meteor->api('CopyAndPay')->setFormParameter($key, $value); // Used internal by all set*-methods
 $meteor->api('CopyAndPay')->unsetFormParameter($key);
 $meteor->api('CopyAndPay')->setAmount($value);
@@ -157,19 +166,19 @@ $meteor->api('CopyAndPay')->setTestMode($mode);
 
 ## Testing
 
-``` bash
+```bash
 $ phpunit
 ```
 
 ## Security
 
-If you discover a security vulnerability within this package, please send an e-mail to hello@brianfaust.me. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within this package, please send an e-mail to hello@basecode.sh. All security vulnerabilities will be promptly addressed.
 
 ## Credits
 
-- [Brian Faust](https://github.com/faustbrian)
-- [All Contributors](../../contributors)
+-   [Brian Faust](https://github.com/faustbrian)
+-   [All Contributors](../../contributors)
 
 ## License
 
-[MIT](LICENSE) © [Brian Faust](https://brianfaust.me)
+[MIT](LICENSE) © [Brian Faust](https://basecode.sh)

@@ -5,15 +5,15 @@ declare(strict_types=1);
 /*
  * This file is part of Meteor Payment PHP Client.
  *
- * (c) Brian Faust <hello@brianfaust.me>
+ * (c) Brian Faust <hello@basecode.sh>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace BrianFaust\MeteorPayment;
+namespace Plients\MeteorPayment;
 
-use BrianFaust\Http\Http;
+use Plients\Http\Http;
 
 class Client
 {
@@ -58,7 +58,7 @@ class Client
      *
      * @param string $name
      *
-     * @return \BrianFaust\MeteorPayment\API\AbstractAPI
+     * @return \Plients\MeteorPayment\API\AbstractAPI
      */
     public function api(string $name): API\AbstractAPI
     {
@@ -66,7 +66,7 @@ class Client
 
         $client = Http::withBaseUri("$url?authentication.userId={$this->userId}&authentication.password={$this->password}&authentication.entityId={$this->entityId}");
 
-        $class = "BrianFaust\\MeteorPayment\\API\\{$name}";
+        $class = "Plients\\MeteorPayment\\API\\{$name}";
 
         return new $class($client);
     }

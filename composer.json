@@ -1,13 +1,19 @@
 {
-    "name": "faustbrian/meteorpayment-php-client",
+    "name": "plients/meteorpayment",
     "description": "A Meteor Payment Client for PHP",
-    "keywords": ["api", "http", "meteor payment"],
+    "keywords": [
+        "api",
+        "http",
+        "meteor payment"
+    ],
     "license": "MIT",
-    "authors": [{
-        "name": "Brian Faust",
-        "email": "hello@brianfaust.me",
-        "homepage": "https://brianfaust.me"
-    }],
+    "authors": [
+        {
+            "name": "Brian Faust",
+            "email": "hello@basecode.sh",
+            "homepage": "https://basecode.sh"
+        }
+    ],
     "require": {
         "php": "^7.1",
         "faustbrian/http": "^1.0"
@@ -18,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "BrianFaust\\MeteorPayment\\": "src/"
+            "Plients\\MeteorPayment\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BrianFaust\\Tests\\MeteorPayment\\": "tests"
+            "Plients\\Tests\\MeteorPayment\\": "tests"
         }
     },
     "config": {
